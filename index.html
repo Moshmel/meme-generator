@@ -8,20 +8,19 @@
     <title>Document</title>
 </head>
 <body onload="init()">
-    
+    <button type="button" onclick="onGenerate()">generate</button>
+    <input id="line1" class="trans-input"type="text" onclick="dragElement(this)" contenteditable="true">hello!
+    <div class='block-container flex'>
+        <div ><img class="main-img" src="img/001.jpg"> </div>
+        <canvas id='canvas'></canvas>
+    </div>
+
+
+
+
     <div class="wrapper">
-        <input class="trans-input"type="text" onclick="dragElement(this)" contenteditable="true">hello!
-        <div class="painting-block" width="400" height="400" >
-            </div>
-
-
-
-
-        <input onkeyup="changeText(event,0)" type="text" class="top-line-text" id="meme-text-top" placeholder="meme top line  " />
+        <input  onkeyup="changeText(event,0)" type="text" class="top-line-text" id="meme-text-top" placeholder="meme top line  " />
         <input type="file" name="image" onchange="onFileInputChange(event)" />
-    <!-- <canvas id="myCanvas" width=500 height=420 onmousedown="activateMove()" onmouseup="deactiveMove()" -->
-        <!-- onmouseleave="deactiveMove()" onmousemove="getMoveCoords(event)"></canvas> -->
-    <!-- </canvas> -->
     <!--modal  -->
 
     <button type="button" onclick="modalOpen()">open modal</button>

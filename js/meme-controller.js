@@ -5,7 +5,9 @@ var ctx
 
 function init()
 {
-    printPics();
+  canvas = document.querySelector('#canvas');
+  ctx = canvas.getContext('2d');
+    modalOpen()
 }
 function onFileInputChange(ev) {
     handleImageFromInput(ev, renderCanvas)
@@ -18,6 +20,8 @@ function handleImageFromInput(ev, onImageReady) {
         var img = new Image();
         img.onload = onImageReady.bind(null, img)
         img.src = event.target.result;
+        //upload img  for global
+        currImg=img;
         saveImg(img)
     }
     reader.readAsDataURL(ev.target.files[0]);
@@ -40,7 +44,7 @@ function modalOpen(){
     $('.modal-container').toggle();
     }
     
-    function onChangeColor(evt, id) {
+    function onChangeColor(evt,id) {
         changeColor(evt, id);
     
     }
@@ -58,6 +62,14 @@ function modalOpen(){
     changeFont(id,value);
     }
 
+
+
+
+
+
+
+
+
     function dragElement(elmnt) {
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
         if (document.getElementById(elmnt.id + "header")) {
@@ -70,7 +82,7 @@ function modalOpen(){
       
         function dragMouseDown(e) {
           e = e || window.event;
-          e.preventDefault();
+
           // get the mouse cursor position at startup:
           pos3 = e.clientX;
           pos4 = e.clientY;
@@ -97,4 +109,9 @@ function modalOpen(){
           document.onmouseup = null;
           document.onmousemove = null;
         }
+      }
+
+      function onGenerate()
+      {
+        generate();
       }

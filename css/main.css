@@ -1,5 +1,5 @@
 canvas{
-    border: 2px solid red;
+  
 }
 @font-face {
     font-family: 'impact';
@@ -14,12 +14,7 @@ canvas{
         border: 0;
         box-sizing: border-box;
       }
- img{
-    height: auto; 
-    width: auto; 
-    max-width: 300px; 
-    max-height: 300px;
- }
+ 
 
  .opt-button
  {
@@ -77,9 +72,6 @@ canvas{
       margin:0 auto;
   }
 
-
-
-  
   /* modal css */
   .modal-container {
     min-width: 200px;
@@ -121,17 +113,25 @@ canvas{
   .green { background-color: #8D9E2B; }
   /* end modal css */
 
-  .painting-block
-  {
-      width:400px;
-      height: 400px;;
-      border:black 1px solid;
-      background-image: url(../img/001.jpg);
-     
-  }
+ 
 
   .trans-input{
       background:none;
-      color:red;
+
       position: absolute;
   }
+
+  .main-img{
+    height: auto;
+    width: 50vw;
+  }
+  #canvas{
+  
+    height: auto;
+    width: 50vw;
+  }
+  
+.block-container{
+  flex-direction: column;
+}
+

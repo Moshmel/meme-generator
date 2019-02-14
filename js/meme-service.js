@@ -62,7 +62,7 @@ var gMeme = {
     selectedImgId: 5,
     txts: [
         {
-            line: '',
+            line: 'first!!',
             size: 60,
             width: 210,
             height: 50,
@@ -71,10 +71,10 @@ var gMeme = {
             x: 210,
             y: 50,
             isShadow: false,
-            font: 'eurofbold',
+            font: 'impact',
         },
         {
-            line: '',
+            line: 'last!!',
             size: 60,
             height: 400,
             width: 210,
@@ -82,8 +82,8 @@ var gMeme = {
             color: 'black',
             x: 210,
             y: 400,
-            isShadow: false,
-            font: 'Calibri',
+            isShadow: true,
+            font: 'arial',
         },
 
     ]
@@ -112,9 +112,10 @@ function changeFont(id, value) {
     gMeme.txts[id].font = value;
 }
 function changeColor(evt, id) {
+    debugger;
     gMeme.txts[id].color = evt.target.value;
-    console.log('color 1', gMeme.txts[id].color);
-    console.log('txt', gMeme.txts)
+    console.log('the color is ',evt.target.value)
+document.querySelector('#line1').style.color=evt.target.value;
 }
 
 function getNewID() {
@@ -139,11 +140,11 @@ function addLine() {
     console.log('gMeme.txts', gMeme.txts);
 }
 
-function changeColor(evt, id) {
-    gMeme.txts[id].color = evt.target.value;
-    console.log('color 1', gMeme.txts[id].color);
-    console.log('txt', gMeme.txts)
-}
+// function changeColor(evt, id) {
+//     gMeme.txts[id].color = evt.target.value;
+//     console.log('color 1', gMeme.txts[id].color);
+//     console.log('txt', gMeme.txts)
+// }
 function decreaseFont(id)
 {
     gMeme.txts[id].size -= 2;
@@ -155,4 +156,38 @@ function changeFont(id,value)
 {
     gMeme.txts[id].font = value;
     console.log(gMeme.txts[id].font)
+}
+
+function generate()
+{
+    var elPhoto=document.querySelector('.main-img')
+    canvas.width = elPhoto.clientWidth;
+    canvas.height = elPhoto.clientHeight;
+    console.log(elPhoto.clientWidth)
+    console.log(elPhoto.clientHeight)
+    ctx.drawImage(elPhoto, 0, 0,elPhoto.clientWidth,elPhoto.clientHeight);
+
+
+
+    gMeme.txts.forEach(function(el) {
+        console.log(el.line)
+        var ctx = canvas.getContext("2d");
+        ctx.textAlign = "center"; 
+        ctx.font = `50px ${el.font}`;
+        if(el.isShadow){
+            ctx.shadowColor="black";
+            ctx.shadowBlur=20
+            ctx.lineWidth=7;
+            ctx.strokeText(el.line, el.x, el.y);
+            ctx.shadowBlur=0;   
+        }
+        ctx.lineWidth=1;
+        ctx.fillStyle = el.color;
+
+        ctx.fillText(el.line, el.x, el.y);
+        
+      });
+      
+
+
 }
