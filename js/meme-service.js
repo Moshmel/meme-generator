@@ -63,7 +63,9 @@ var gMeme = {
     txts: [
         {
             line: '',
-            size: 16,
+            size: 20,
+            height: 400,
+            width: 210,
             align: 'center',
             color: 'black',
             x: 210,
@@ -73,7 +75,7 @@ var gMeme = {
         },
         {
             line: '',
-            size: 60,
+            size: 20,
             height: 400,
             width: 210,
             align: 'center',
@@ -110,9 +112,7 @@ function changeFont(id, value) {
     gMeme.txts[id].font = value;
 }
 function changeColor(evt, id) {
-    gMeme.txts[id].color = evt.target.value;
-    console.log('color 1', gMeme.txts[id].color);
-    console.log('txt', gMeme.txts)
+    return gMeme.txts[id].color = evt.target.value;
 }
 
 function getNewID() {
@@ -137,20 +137,32 @@ function addLine() {
     console.log('gMeme.txts', gMeme.txts);
 }
 
-function changeColor(evt, id) {
-    gMeme.txts[id].color = evt.target.value;
-    console.log('color 1', gMeme.txts[id].color);
-    console.log('txt', gMeme.txts)
-}
 function decreaseFont(id)
 {
     gMeme.txts[id].size -= 2;
+    return gMeme.txts[id].size
 }
 function increaseFont(id) {
     gMeme.txts[id].size += 2;
+    return gMeme.txts[id].size
 }
 function changeFont(id,value)
 {
     gMeme.txts[id].font = value;
     console.log(gMeme.txts[id].font)
+}
+
+function getTransInputCoords() {
+    gMeme.txts.forEach((txt,inx)=>{
+        let line = document.querySelector(`#line${inx+1}`)
+        let mainImg = document.querySelector('.main-img').getBoundingClientRect()
+        txt.height = line.offsetHeight
+        txt.width = line.offsetWidth
+        txt.x = Math.abs(mainImg.left - line.getBoundingClientRect().left)
+        txt.y = Math.abs(mainImg.top - line.getBoundingClientRect().top) + txt.height    
+    })
+}
+
+function textShadowToggle() {
+    return gMeme.txts[id].isShadow = !gMeme.txts[id].isShadow
 }

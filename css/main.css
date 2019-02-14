@@ -17,8 +17,8 @@ canvas{
  img{
     height: auto; 
     width: auto; 
-    max-width: 300px; 
-    max-height: 300px;
+    /* max-width: 300px;  */
+    /* max-height: 300px; */
  }
 
  .opt-button
@@ -76,6 +76,9 @@ canvas{
   .margin-center{
       margin:0 auto;
   }
+  .text-align{
+    text-align: center
+  }
 
 
 
@@ -110,6 +113,7 @@ canvas{
     height: 16px;
     margin-right: 8px;
     background-color: red;
+    
   }
   
   .circle:hover {
@@ -132,6 +136,19 @@ canvas{
 
   .trans-input{
       background:none;
-      color:red;
       position: absolute;
+      border:3px solid red;
+      left: 40%;
+      font-family: Impact;
+      font-size: 20px;
+      /* text-align: center; */
   }
+
+.main-img{
+  width:50vw ;
+  height: auto;
+}
+
+.shadow{
+  
+}
