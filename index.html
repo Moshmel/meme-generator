@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,124 @@
     <link rel="stylesheet" href="css/main.css">
     <title>Document</title>
 </head>
-<body>
-<script src="lib/jquery/jquery.js"></script>
-<script src="js/meme-controller.js"></script>    
-<script src="js/meme-service.js"></script>    
+
+<body onload="init()">
+
+    <canvas id="myCanvas" width=500 height=420 onmousedown="activateMove()" onmouseup="deactiveMove()" onmouseleave="deactiveMove()" onmousemove="getMoveCoords(event)"></canvas>
+    </canvas>
+    <div class="meme-options-container">
+        <div class="top-line line-container flex column space-between">
+            <div class="enter-text">
+                <input onkeyup="changeText(event,0)" type="text" class="top-line-text" id="meme-text-top" placeholder="meme top line  " />
+            </div>
+            <div class="line-setup-opts flex space-between">
+                <div title="Delete top meme" class="delete line" onclick="deleteMemeText(0)">
+                    <button class="opt-button">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </div>
+                <input title="Change color" type="color" onchange="changeColor(event,0)" class="color-picker">
+                <div class="change-font-size flex">
+
+                    <button title="Decrease font size" class="opt-button decrease-font-size" onclick="decreaseFont(0)">&#128475</button>
+                    <button title="increase font size" class="opt-button increase-font-size" onclick="increaseFont(0)">&#128474</button>
+
+                </div>
+                <div class="flex move-lines-vertic">
+                    <button title="Move up" onclick="incHeight(0)" class="opt-button-increase-height">
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+                    <button title="Move down" onclick="decHeight(0)" class="opt-button-decrease-height">
+                        <i class="fas fa-arrow-down"></i>
+                    </button>
+                </div>
+
+                <select onchange="changeFont(0,this.value)" name="choose-font">
+                    <!-- <option style="display:none" disabled selected value></option> -->
+                    <option value="eurofbold">eurofbold</option>
+                    <option value="Calibri">Calibri</option>
+                    <option value="latobold">latobold</option>
+                </select>
+                <button title="Toggle shadow" class="opt-button text-shadow" onclick="textShadowToggle(this,0)">A</button>
+                <div class="align-text flex justify-end ">
+                    <button title="Align left" class="opt-button align-left" onclick="changeAlign('left',0)">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+                    <button title="Align center" class="opt-button align-center-box" onclick="changeAlign('center',0)">
+                        <i class="fas fa-align-center"></i>
+                    </button>
+                    <button title="Align right" class="opt-button align-right" onclick="changeAlign('right',0)">
+                        <i class="fas fa-align-right"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="bottom-line line-container flex column space-between">
+            <div class="enter-text">
+                <input onkeyup="changeText(event,1)" type="text" class="bottom-line-text" id="meme-text-top"
+                    placeholder="meme bottom line  " />
+            </div>
+            <div class="line-setup-opts flex space-between">
+                <div title="Delete bottom meme" class="delete line" onclick="deleteMemeText(1)">
+                    <button class="opt-button">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </div>
+                <input title="Change color" type="color" onchange="changeColor(event,1)" class="color-picker">
+                <div class="change-font-size flex">
+
+                    <button title="Decrease font size" class="opt-button decrease-font-size" onclick="decreaseFont(1)">&#128475</button>
+                    <button title="increase font size" class="opt-button increase-font-size" onclick="increaseFont(1)">&#128474</button>
+
+                </div>
+                <div class="flex move-lines-vertic">
+                    <button title="Move up" onclick="incHeight(1)" class="opt-button-increase-height">
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+                    <button title="Move down" onclick="decHeight(1)" class="opt-button-decrease-height">
+                        <i class="fas fa-arrow-down"></i>
+                    </button>
+                </div>
+
+                <select onchange="changeFont(1,this.value)" name="choose-font">
+                    <!-- <option style="display:none" disabled selected value></option> -->
+                    <option value="eurofbold">eurofbold</option>
+                    <option value="Calibri">Calibri</option>
+                    <option value="latobold">latobold</option>
+                </select>
+                <button title="Toggle shadow" class="opt-button text-shadow" onclick="textShadowToggle(this,1)">A</button>
+                <div class="align-text flex justify-end ">
+                    <button title="Align left" class="opt-button align-left" onclick="changeAlign('left',1)">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+                    <button title="Align center" class="opt-button align-center-box" onclick="changeAlign('center',1)">
+                        <i class="fas fa-align-center"></i>
+                    </button>
+                    <button title="Align right" class="opt-button align-right" onclick="changeAlign('right',1)">
+                        <i class="fas fa-align-right"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+        <div class="add-image">
+            <input type="file" name="image" onchange="onFileInputChange(event)" />
+            <input type="text" id="imageAddress" name="upload-url" placeholder="add URL here..">
+        </div>
+        <button class="add-line" onclick="addLine()">Add Line</button>
+        <a href="#" class="button" id="btn-download" download="my-meme.png">Download</a>
+    </div>
+
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/meme-controller.js"></script>
 </body>
+
 </html>
