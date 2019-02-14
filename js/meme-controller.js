@@ -2,12 +2,11 @@
 
 var canvas
 var ctx
-var text = ''
-
-
+var startX
+var startY
+var selectedText = -1
 
 function init() {
-    // debugger
     initCanvas()
 }
 
@@ -16,7 +15,8 @@ function initCanvas() {
     ctx = canvas.getContext('2d');
 }
 
-function changeText(event) {
+function changeText(event, txtId) {
+    let text = getMemeById(txtId)
     let char = event.key
     if (char === 'Backspace') {
         text = text.substr(0, text.length - 1)
@@ -25,7 +25,7 @@ function changeText(event) {
     else {
         text += char
     }
-    console.log(event)
+    renderCanvas()
 }
 
 
@@ -42,7 +42,7 @@ function changeText(event) {
 // }
 
 function onFileInputChange(ev) {
-    handleImageFromInput(ev, renderCanvas)
+    handleImageFromInput(ev, renderImg)
 }
 
 //UPLOAD IMG WITH INPUT FILE
@@ -57,7 +57,7 @@ function handleImageFromInput(ev, onImageReady) {
     reader.readAsDataURL(ev.target.files[0]);
 }
 
-function renderCanvas(img) {
+function renderImg(img) {
     canvas.width = img.width;
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0);
@@ -65,20 +65,40 @@ function renderCanvas(img) {
 
 function activateMove(ev) {
     isClicked = true
+    startX = parseInt(e.clientX - offsetX);
+    startY = parseInt(e.clientY - offsetY);
 }
 
 function deactiveMove() {
     isClicked = false
+    selectedText = -1;
 }
 
 function getMoveCoords(ev) {
     if (!isClicked) return
+    let txts = getTexts()
+    txts.forEach((txt,inx)=>{
+        if (textHittest(startX, startY, txt)) {
+            selectedText = inx;
+        }
+    })
     coords = { x: ev.offsetX, y: ev.offsetY }
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    renderCanvas(getImg())
-    ctx.fillText('Hello MEME', coords.x, coords.y);
+    renderCanvas()
 }
 
-function modalOpen(){
-$('.modal-container').toggle();
+function renderCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    renderImg(getImg())
+    let txts = getTexts()
+    txts.forEach(txt => {
+        ctx.fillText(txt.line, txt.x, txt.y);//////////////////////
+    });
+}
+
+function modalOpen() {
+    $('.modal-container').toggle();
+}
+
+function textHittest(x, y, text) {
+    return (x >= text.x && x <= text.x + text.width && y >= text.y - text.height && y <= text.y);
 }

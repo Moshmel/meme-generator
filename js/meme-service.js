@@ -63,9 +63,7 @@ var gMeme = {
     txts: [
         {
             line: '',
-            size: 60,
-            width: 210,
-            height: 50,
+            size: 16,
             align: 'center',
             color: 'black',
             x: 210,
@@ -111,9 +109,9 @@ function decHeight(id) {
     gMeme.txts[id].y += 5;
 }
 
-function changeText(evt, id) {
-    gMeme.txts[id].line = evt.target.value;
-}
+// function changeText(evt, id) {
+//     gMeme.txts[id].line = evt.target.value;
+// }
 
 function changeFont(id, value) {
     gMeme.txts[id].font = value;
@@ -143,4 +141,12 @@ function addLine() {
     }
     gMeme.txts.push(txt);
     console.log('gMeme.txts', gMeme.txts);
+}
+
+function getMemeById(txtId){
+    return gMeme.txts[txtId]
+}
+
+function getTexts() {
+    return gMeme.txts
 }
