@@ -120,3 +120,18 @@ canvas{
   .yellow { background-color: #F29F25; }
   .green { background-color: #8D9E2B; }
   /* end modal css */
+
+  .painting-block
+  {
+      width:400px;
+      height: 400px;;
+      border:black 1px solid;
+      background-image: url(../img/001.jpg);
+     
+  }
+
+  .trans-input{
+      background:none;
+      color:red;
+      position: absolute;
+  }
