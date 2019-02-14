@@ -95,33 +95,26 @@ function getImg() {
     return currImg
 }
 
-var strHtml=''
+
+function printPics()
+{
+    var strHtml=''
 gImgs.forEach(function(el) {
     strHtml+=`<img src='${el.url}' width='200' height='200'>`;
   });
   $('.gellery-container' ).html(strHtml);
-  console.log(strHtml)
-  function incHeight(id) {
-    gMeme.txts[id].y -= 5;
-}
 
-function decHeight(id) {
-    gMeme.txts[id].y += 5;
 }
-
-// function changeText(evt, id) {
-//     gMeme.txts[id].line = evt.target.value;
-// }
 
 function changeFont(id, value) {
     gMeme.txts[id].font = value;
 }
-
 function changeColor(evt, id) {
     gMeme.txts[id].color = evt.target.value;
     console.log('color 1', gMeme.txts[id].color);
     console.log('txt', gMeme.txts)
 }
+
 function getNewID() {
     var max = 0;
     gImgs.forEach(function (img) {
@@ -129,6 +122,7 @@ function getNewID() {
     })
     return max + 1;
 }
+
 function addLine() {
     var txt = {
         line: '',
@@ -143,10 +137,20 @@ function addLine() {
     console.log('gMeme.txts', gMeme.txts);
 }
 
-function getMemeById(txtId){
-    return gMeme.txts[txtId]
+function changeColor(evt, id) {
+    gMeme.txts[id].color = evt.target.value;
+    console.log('color 1', gMeme.txts[id].color);
+    console.log('txt', gMeme.txts)
 }
-
-function getTexts() {
-    return gMeme.txts
+function decreaseFont(id)
+{
+    gMeme.txts[id].size -= 2;
+}
+function increaseFont(id) {
+    gMeme.txts[id].size += 2;
+}
+function changeFont(id,value)
+{
+    gMeme.txts[id].font = value;
+    console.log(gMeme.txts[id].font)
 }
