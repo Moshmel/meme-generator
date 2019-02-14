@@ -78,3 +78,7 @@ function getMoveCoords(ev) {
     renderCanvas(getImg())
     ctx.fillText('Hello MEME', coords.x, coords.y);
 }
+
+function modalOpen(){
+$('.modal-container').toggle();
+}
