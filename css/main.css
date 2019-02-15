@@ -14,12 +14,7 @@ canvas{
         border: 0;
         box-sizing: border-box;
       }
- img{
-    height: auto; 
-    width: auto; 
-    /* max-width: 300px;  */
-    /* max-height: 300px; */
- }
+
 
  .opt-button
  {
@@ -150,5 +145,5 @@ canvas{
 }
 
 .shadow{
-  
+
 }
