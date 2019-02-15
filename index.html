@@ -10,15 +10,17 @@
 </head>
 
 <body onload="init()">
-    <div class="wrapper text-align"><img class="main-img" src="img/001.jpg"></div>
+    <button type="button" onclick="onGenerate()">generate</button>
+    <div class='block-container flex'>
+        <div class="wrapper text-align"><img class="main-img" src="img/001.jpg"></div>
+        <canvas id='canvas'></canvas>
+        
+    </div>
+
+   
     <div class="wrapper">
         <div class="wrapper flex space-between">
             <input type="file" name="image" onchange="onFileInputChange(event)" />
-            <!-- <canvas id="myCanvas" width=500 height=420 onmousedown="activateMove()" onmouseup="deactiveMove()" -->
-            <!-- onmouseleave="deactiveMove()" onmousemove="getMoveCoords(event)"></canvas> -->
-            <!-- </canvas> -->
-            <!--modal  -->
-
             <button type="button" onclick="modalOpen()">open modal</button>
             <input class="trans-input" id="line1" type="text" onclick="dragElement(this)" contenteditable="true">
             <div class="modal-container flex ">
@@ -41,12 +43,7 @@
                     </select>
                     <button title="Toggle shadow" class="opt-button text-shadow" onclick="onTextShadowToggle(this,0)">A
                     </button>
-                    <!-- <button title="Align left" class="opt-button align-left" onclick="changeAlign('left',0)">af
-                    </button>
-                    <button title="Align center" class="opt-button align-center-box" onclick="changeAlign('center',0)">ac
-                    </button>
-                    <button title="Align right" class="opt-button align-right" onclick="changeAlign('right',0)">ar
-                    </button> -->
+
 
                 </section>
             </div>

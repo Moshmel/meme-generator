@@ -19,12 +19,12 @@ var gImgs = [{
 {
     id: 3,
     url: 'img/003.jpg',
-    keywords: ['dogs','friends']
+    keywords: ['dogs', 'friends']
 },
 {
     id: 4,
     url: 'img/004.jpg',
-    keywords: ['baby','cute','sleep']
+    keywords: ['baby', 'cute', 'sleep']
 },
 {
     id: 5,
@@ -34,17 +34,17 @@ var gImgs = [{
 {
     id: 6,
     url: 'img/006.jpg',
-    keywords: ['cat','sleep','tierd']
+    keywords: ['cat', 'sleep', 'tierd']
 },
 {
     id: 7,
     url: 'img/007.jpg',
-    keywords: ['ridiclous','funny','clown']
+    keywords: ['ridiclous', 'funny', 'clown']
 },
 {
     id: 8,
     url: 'img/008.jpg',
-    keywords: ['baby','funny']
+    keywords: ['baby', 'funny']
 },
 {
     id: 9,
@@ -54,7 +54,7 @@ var gImgs = [{
 {
     id: 10,
     url: 'img/010.jpg',
-    keywords: ['wtf','stupid',' angry']
+    keywords: ['wtf', 'stupid', ' angry']
 }
 ]
 
@@ -62,29 +62,29 @@ var gMeme = {
     selectedImgId: 5,
     txts: [
         {
-            line: '',
-            size: 20,
-            height: 400,
+            line: 'first!!',
+            size: 50,
             width: 210,
             align: 'center',
             color: 'black',
             x: 210,
             y: 50,
             isShadow: false,
-            font: 'eurofbold',
-        },
-        {
-            line: '',
-            size: 20,
-            height: 400,
-            width: 210,
-            align: 'center',
-            color: 'black',
-            x: 210,
-            y: 400,
-            isShadow: false,
-            font: 'Calibri',
-        },
+            font: 'Impact',
+        }
+        //,
+        // {
+        //     line: 'last!!',
+        //     size: 60,
+        //     height: 400,
+        //     width: 210,
+        //     align: 'center',
+        //     color: 'black',
+        //     x: 210,
+        //     y: 400,
+        //     isShadow: true,
+        //     font: 'arial',
+        // },
 
     ]
 }
@@ -98,13 +98,12 @@ function getImg() {
 }
 
 
-function printPics()
-{
-    var strHtml=''
-gImgs.forEach(function(el) {
-    strHtml+=`<img src='${el.url}' width='200' height='200'>`;
-  });
-  $('.gellery-container' ).html(strHtml);
+function printPics() {
+    var strHtml = ''
+    gImgs.forEach(function (el) {
+        strHtml += `<img src='${el.url}' width='200' height='200'>`;
+    });
+    $('.gellery-container').html(strHtml);
 
 }
 
@@ -137,8 +136,7 @@ function addLine() {
     console.log('gMeme.txts', gMeme.txts);
 }
 
-function decreaseFont(id)
-{
+function decreaseFont(id) {
     gMeme.txts[id].size -= 2;
     return gMeme.txts[id].size
 }
@@ -146,20 +144,50 @@ function increaseFont(id) {
     gMeme.txts[id].size += 2;
     return gMeme.txts[id].size
 }
-function changeFont(id,value)
-{
+function changeFont(id, value) {
     gMeme.txts[id].font = value;
     console.log(gMeme.txts[id].font)
 }
 
+function generate() {
+    var elPhoto = document.querySelector('.main-img')
+    canvas.width = elPhoto.clientWidth;
+    canvas.height = elPhoto.clientHeight;
+    console.log(elPhoto.clientWidth)
+    console.log(elPhoto.clientHeight)
+    ctx.drawImage(elPhoto, 0, 0, elPhoto.clientWidth, elPhoto.clientHeight);
+
+
+    gMeme.txts.forEach(function (el) {
+        console.log(el.line)
+        ctx = canvas.getContext("2d");
+        ctx.font = `${el.size}px ${el.font}`;
+        if (el.isShadow) {
+            ctx.shadowColor = "black";
+            ctx.shadowBlur = 20
+            ctx.lineWidth = 7;
+            ctx.strokeText(el.line, el.x, el.y);
+            ctx.shadowBlur = 0;
+        }
+        ctx.lineWidth = 1;
+        ctx.fillStyle = el.color;
+
+        ctx.fillText(el.line, el.x, el.y);
+
+    });
+
+}
+
+
 function getTransInputCoords() {
-    gMeme.txts.forEach((txt,inx)=>{
-        let line = document.querySelector(`#line${inx+1}`)
+    gMeme.txts.forEach((txt, inx) => {
+        let line = document.querySelector(`#line${inx + 1}`)
         let mainImg = document.querySelector('.main-img').getBoundingClientRect()
         txt.height = line.offsetHeight
         txt.width = line.offsetWidth
-        txt.x = Math.abs(mainImg.left - line.getBoundingClientRect().left)
-        txt.y = Math.abs(mainImg.top - line.getBoundingClientRect().top) + txt.height    
+        txt.x = Math.abs(line.getBoundingClientRect().left - mainImg.left) 
+        txt.y = Math.abs(mainImg.top - line.getBoundingClientRect().top) + (txt.height) - (txt.size/(txt.size/10))
+        txt.line = line.value
     })
 }
 
