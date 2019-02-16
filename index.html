@@ -6,57 +6,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.css">
     <title>Document</title>
 </head>
 
 <body onload="init()">
-    <button type="button" onclick="onGenerate()">generate</button>
-    <div class='block-container flex'>
-        <div class="wrapper text-align"><img class="main-img" src="img/001.jpg"></div>
-        <canvas id='canvas'></canvas>
-        
+    <div class="main-page">
+
+        <header class="header">Header</header>
+
+        <main class="main-container">
+
+            <div class='block-container flex'>
+                <div class="img-container"><img class="main-img" id="main-img" src=""></div>
+                <div class="inputs"></div>
+                <canvas id='canvas' hidden></canvas>
+            </div>
+
+            <div>
+                <div class="flex column tools-container">
+                    <section>
+                        <!-- ToolBar -->
+                        <div class="btn-group btn-block" role="group" aria-label="Button group with nested dropdown">
+                            <button type="button" class="btn btn-secondary">
+                                <input title="Change color" type="color" onchange="onChangeColor(event)" class=" opt-button">
+                            </button>
+                            <button type="button" class="btn btn-secondary " onclick="onIncreaseFont()">
+                                A+
+                            </button>
+                            <button type="button" class="btn btn-secondary " onclick="onDecreaseFont()">
+                                A-
+                            </button>
+                            <button type="button" class="btn btn-secondary">
+                                <select onchange="onChangeFont(this.value)" name="choose-font">
+                                    <option value="impact">Impact</option>
+                                    <option value="other-text">other-text</option>
+                                    <option value="other-text2">other-text2</option>
+                                </select>
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="onTextShadowToggle()">
+                                ❏
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="onAddLine()">
+                                    ＋
+                            </button>
+                        </div>
+                        <!-- End of ToolBar -->
+                    </section>
+                    <section>
+                        <!-- Upload & Download Buttons -->
+                        <button type="button" class="btn btn-outline-success btn-lg btn-block relative">
+                            <a download="myImage.jpg" class="opacity" href="" onclick="onGenerate(this)"></a>
+                            Download
+                        </button>
+                        <button type="button" class="btn btn-outline-success btn-lg btn-block relative">
+                            <input id="upload" class="opacity" type="file" name="image" accept='image/*' onchange="uploadImg(event)"/>  
+                            Upload File  
+                        </button>
+                        <!-- End Of Upload & Download Buttons -->
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer>Footer</footer>
     </div>
 
-   
-    <div class="wrapper">
-        <div class="wrapper flex space-between">
-            <input type="file" name="image" onchange="onFileInputChange(event)" />
-            <button type="button" onclick="modalOpen()">open modal</button>
-            <input class="trans-input" id="line1" type="text" onclick="dragElement(this)" contenteditable="true">
-            <div class="modal-container flex ">
-                <header>
-                    <div style="display:flex;">
-                        <div class="circle red"></div>
-                        <div class="circle yellow"></div>
-                        <div class="circle green"></div>
-                    </div>
-                </header>
-                <section class='margin-center flex align-center'>
-                    <!-- modal- tools -->
-                    <input title="Change color" type="color" onchange="onChangeColor(event,0)" class=" opt-button color-picker">
-                    <button title="Decrease font size" class=" opt-button decrease-font-size" onclick="onDecreaseFont(0)">🗛</button>
-                    <button title="increase font size" class="increase-font-size" onclick="onIncreaseFont(0)">🗚</button>
-                    <select onchange="onChangeFont(0,this.value)" name="choose-font">
-                        <option value="impact">Impact</option>
-                        <option value="other-text">other-text</option>
-                        <option value="other-text2">other-text2</option>
-                    </select>
-                    <button title="Toggle shadow" class="opt-button text-shadow" onclick="onTextShadowToggle(this,0)">A
-                    </button>
+    <script src="lib/bootstrap/bootstrap.js"></script>
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="js/meme-controller.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/utils.js"></script>
 
-
-                </section>
-            </div>
-            <!-- end modal -->
-
-
-
-            <div class='gellery-container '></div>
-        </div>
-
-        <script src="lib/jquery/jquery.js"></script>
-        <script src="js/meme-controller.js"></script>
-        <script src="js/meme-service.js"></script>
 </body>
 
 </html>
