@@ -5,59 +5,44 @@ var ctx
 var gLineHtml
 var gNextId = 2
 var gCurrLine = 1
+var gImgTop = null
 var startX
 var startY
 
-// var dom = {
-//   container: document.querySelector(".main-page"),
-//   drag: document.getElementById("drag"),
-// }
-// var container = {
-//   x: dom.container.getBoundingClientRect().left,
-//   y: dom.container.getBoundingClientRect().top,
-//   w: dom.container.getBoundingClientRect().width,
-//   h: dom.container.getBoundingClientRect().height
-// }
-// var drag = {
-//   w: dom.drag.offsetWidth,
-//   h: dom.drag.offsetHeight
-// }
-
-// target = null;
-
 function init() {
   let img = document.querySelector('.main-img')
-  img.onload = () => {
+  img.onload = ()=>{
     canvas = document.querySelector('#canvas');
     ctx = canvas.getContext('2d');
     gLineHtml = renderFirstLines()
     document.querySelector('#line1').focus()
   }
-  img.src = loadFromStorage('Img')
+  img.src  = loadFromStorage('Img')
 }
 
 function onAddLine() {
   saveContent()
-  let elInputs = document.querySelector('.inputs')
+  let elMainCon = document.querySelector('.main-container')
   addTxt()
-  elInputs.innerHTML += addLine(gNextId)
+  elMainCon.innerHTML += addLine(gNextId)
   renderContent()
   gNextId++
+  document.querySelector(`#line${gNextId}`).focus()
   gCurrLine = gNextId
-  document.querySelector(`#line${gCurrLine}`).focus()
 }
 
 function renderFirstLines() {
   let strHtml = []
-  let elInputs = document.querySelector('.inputs')
-  strHtml[0] = addLine(0)
-  strHtml[1] = addLine(1)
-  elInputs.innerHTML = strHtml[0] + strHtml[1]
+  let elMainCon = document.querySelector('.main-container')
+  for (let i = 0; i < 2; i++) {
+    strHtml[i] = addLine(i)
+    elMainCon.innerHTML += strHtml[i]
+  }
   return strHtml
 }
 
 function addLine(id) {
-  return `<input class="trans-input text-shadow outline" id="line${id + 1}" type="text" ontouchstart="touchElement(event)" ontouchmove="moveElement(event, this)" onclick="dragElement(this)" onkeypress="widthGrow(this)" contenteditable ${inputStyle(id)} >`
+   return `<input class="trans-input text-shadow outline" id="line${id + 1}" type="text" ontouchstart="touchElement(event,this)" ontouchmove="moveElement(event, this)" ontouchend="dropElement" (elLine) onclick="dragElement(this)" onkeypress="widthGrow(this)" contenteditable ${inputStyle(id)} >`
 }
 
 function inputStyle(id) {
@@ -67,6 +52,7 @@ function inputStyle(id) {
   txt.size = mainImg.offsetHeight / 8
   txt.height = mainImg.offsetHeight
   txt.x = mainImg.offsetLeft + (mainImg.offsetWidth / 2) - (txt.width / 2)
+  
   switch (txt.line) {
     case 'first!!':
       txt.y = Math.abs(mainImg.offsetTop) + (txt.height * 0.05)
@@ -84,12 +70,10 @@ function inputStyle(id) {
 function uploadImg(ev) {
   var input = ev.target;
   var reader = new FileReader();
-  reader.onload = () => {
+  reader.onload = function () {
     var dataURL = reader.result;
     var output = document.querySelector('#main-img');
     output.src = dataURL;
-    saveToStorage('Img', dataURL)
-    renderFirstLines()
   };
   reader.readAsDataURL(input.files[0]);
 
@@ -110,45 +94,45 @@ function modalOpen() {
   $('.modal-container').toggle();
 }
 function onChangeColor(evt) {
-  document.querySelector(`#line${gCurrLine}`).style.color = changeColor(evt, gCurrLine - 1);
+  document.querySelector(`#line${gCurrLine}`).style.color = changeColor(evt, gCurrLine-1);
 }
 function onDecreaseFont() {
-  document.querySelector(`#line${gCurrLine}`).style.fontSize = decreaseFont(gCurrLine - 1) + 'px'
-  widthGrow(gLineHtml[gCurrLine - 1])
+  document.querySelector(`#line${gCurrLine}`).style.fontSize = decreaseFont(gCurrLine-1) + 'px'
 }
 function onIncreaseFont() {
-  document.querySelector(`#line${gCurrLine}`).style.fontSize = increaseFont(gCurrLine - 1) + 'px'
-  widthGrow(gLineHtml[gCurrLine - 1])
+  document.querySelector(`#line${gCurrLine}`).style.fontSize = increaseFont(gCurrLine-1) + 'px'
 }
 function onChangeFont(value) {
   document.querySelector(`#line${gCurrLine}`).style.fontFamily = value
-  changeFont(gCurrLine - 1, value);
+  changeFont(gCurrLine-1, value);
 }
 function onTextShadowToggle() {
   var line = document.querySelector(`#line${gCurrLine}`)
-  textShadowToggle(gCurrLine - 1)
+  textShadowToggle(gCurrLine-1)
   line.classList.toggle('text-shadow')
 }
 
-function touchElement(e) {
+function touchElement(e,elLine) {
   e = e || window.event;
   e.preventDefault();
+  elLine.focus()
   startX = parseInt(e.changedTouches[0].clientX)
   startY = parseInt(e.changedTouches[0].clientY)
 }
 
 function moveElement(e, elLine) {
-
+  
   e = e || window.event;
   e.preventDefault();
-
-  elLine.style.left = (e.touches[0].pageX) - (elLine.clientWidth / 2) + 'px';
   elLine.style.top = (e.touches[0].pageY) - (elLine.clientHeight / 2) + 'px';
+  elLine.style.left = (e.touches[0].pageX) - (elLine.clientWidth / 2) + 'px';
 }
 
+function dropElement(elLine) {
+  elLine.focus()
+}
 
 function dragElement(elmnt) {
-
   gCurrLine = parseInt((elmnt.id).substr((elmnt.id).length - 1))
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById(elmnt.id + "header")) {
@@ -171,7 +155,6 @@ function dragElement(elmnt) {
   }
 
   function elementDrag(e) {
-
     e = e || window.event;
     e.preventDefault();
     // calculate the new cursor position:
@@ -188,27 +171,43 @@ function dragElement(elmnt) {
     /* stop moving when mouse button is released:*/
     document.onmouseup = null;
     document.onmousemove = null;
-    document.touchmove = null;
-    document.touchend = null;
   }
 }
 
-
 function onGenerate(elLink) {
-
+  
   getTransInputCoords()
   generate();
-  var image = canvas.toDataURL("image/png");
+  var image = canvas.toDataURL();
   elLink.href = image;
 }
 
+function getPos(){
+  
+  gImgTop = document.querySelector(`.main-img`).y
+}
+
+function getMove(){
+
+  let spaceBetween = parseInt(document.querySelector(`.main-img`).y - gImgTop)
+  for (let i = 0; i < gLineHtml.length; i++) {
+    let txt = getTxt(i)
+    let elLine = document.querySelector(`#line${i+1}`)
+    let top = parseInt(elLine.style.top.substring(0,elLine.style.top.length-2))
+    elLine.style.top = spaceBetween + top + 'px'
+    txt.y = spaceBetween + top
+  }
+}
+
 function widthGrow(elLine) {
-  let txt = getTxt(gCurrLine - 1)
+  let lineId = (elLine.id).substr((elLine.id).length - 1) - 1
+  let txt = getTxt(lineId)
+  let width = elLine.offsetWidth
   if (elLine.value === '') {
     elLine.style.width = txt.size + (txt.size / 2) + 'px'
-    document.querySelector(`#line${gCurrLine}`).classList.remove('outline')
+    document.querySelector(`#line${lineId + 1}`).classList.remove('outline')
   }
-  else elLine.style.width = ((elLine.value.length + 1) * txt.size) + (txt.size / 2) + 'px'
+  else elLine.style.width = width + (txt.size / 2) + 'px'
 }
 
 function saveContent() {
@@ -224,5 +223,3 @@ function renderContent() {
     document.querySelector(`#line${i + 1}`).value = txt.content
   }
 }
-
-

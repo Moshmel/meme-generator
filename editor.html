@@ -5,15 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <link rel="stylesheet" href="lib/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
     <title>Document</title>
 </head>
 
 <body onload="init()">
+
     <div class="main-page">
 
-        <header class="header">Header</header>
+        <header class="header">
+            <nav class="navbar navbar-expand-lg navbar-light navbar-custum">
+                <a class="navbar-brand" href="#">Meme</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" onclick="getPos()"
+                    onmouseup="setTimeout(getMove,500)">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="index.html">Gallery <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" href="#">generate mem</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
         <main class="main-container">
 
@@ -48,20 +65,20 @@
                                 ❏
                             </button>
                             <button type="button" class="btn btn-secondary" onclick="onAddLine()">
-                                    ＋
+                                ＋
                             </button>
                         </div>
                         <!-- End of ToolBar -->
                     </section>
-                    <section>
+                    <section class="buttons">
                         <!-- Upload & Download Buttons -->
                         <button type="button" class="btn btn-outline-success btn-lg btn-block relative">
-                            <a download="myImage.jpg" class="opacity" href="" onclick="onGenerate(this)"></a>
+                            <a download="myMeme.png" class="opacity" href="" onclick="onGenerate(this)"></a>
                             Download
                         </button>
                         <button type="button" class="btn btn-outline-success btn-lg btn-block relative">
-                            <input id="upload" class="opacity" type="file" name="image" accept='image/*' onchange="uploadImg(event)"/>  
-                            Upload File  
+                            <input id="upload" class="opacity" type="file" name="image" accept='image/*' onchange="uploadImg(event)" />
+                            Upload File
                         </button>
                         <!-- End Of Upload & Download Buttons -->
                     </section>
@@ -69,15 +86,61 @@
             </div>
         </main>
 
-        <footer>Footer</footer>
+        <footer>
+
+            <!-- Footer Elements -->
+            <div class="container">
+
+                <!-- Grid row-->
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-12 align-center">
+                        <div class="mb-5 flex justify-center">
+
+                            <!-- Facebook -->
+                            <a class="fb-ic" href="http://facebook.com">
+                                <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                            </a>
+                            <!-- Twitter -->
+                            <a class="tw-ic" href="http//twitter.com">
+                                <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!-- Google +-->
+                            <a class="gplus-ic" href="http://google.com">
+                                <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Linkedin -->
+                            <a class="li-ic" href="http://linkedin.com">
+                                <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Instagram-->
+                            <a class="ins-ic" href="http://instagram.com">
+                                <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Pinterest-->
+                            <a class="pin-ic" href="http//pinterest.com">
+                                <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row-->
+
+            </div>
+            <!-- Footer Elements -->
+
+        </footer>
     </div>
 
-    <script src="lib/bootstrap/bootstrap.js"></script>
     <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/bootstrap/bootstrap.js"></script>
     <script src="js/meme-controller.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/utils.js"></script>
-    
+
 </body>
 
 </html>

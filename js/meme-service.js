@@ -86,6 +86,7 @@ function addTxt() {
         font: 'Impact',
     }
     gMeme.txts.push(txt);
+    console.log('gMeme.txts', gMeme.txts);
 }
 
 function decreaseFont(id) {
@@ -101,17 +102,21 @@ function getTxt(id) {
 }
 function changeFont(id, value) {
     gMeme.txts[id].font = value;
+    console.log(gMeme.txts[id].font)
 }
 
 function generate() {
     var elPhoto = document.querySelector('.main-img')
     canvas.width = elPhoto.clientWidth;
     canvas.height = elPhoto.clientHeight;
+    console.log(elPhoto.clientWidth)
+    console.log(elPhoto.clientHeight)
     elPhoto.crossOrigin = "anonymous"
     ctx.drawImage(elPhoto, 0, 0, elPhoto.clientWidth, elPhoto.clientHeight);
 
 
     gMeme.txts.forEach(function (el) {
+        console.log(el.line)
         ctx = canvas.getContext("2d");
         ctx.font = `${el.size}px ${el.font}`;
         if (el.isShadow) {

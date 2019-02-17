@@ -6,20 +6,218 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/gallery-main.css">
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="icon" href="img/favicon.png">
     <title>Document</title>
 </head>
 
 <body>
     <div class="wrapper">
-        <div class="one">One</div>
-        <div class="search-container">
-               search mims : <input type="text" class="searcher"name="search" placeholder="Search.."    onkeyup="onSearchImage(this.value)" >
+        <!-- navbar -->
+        <div class="one">
+                <nav class="navbar navbar-expand-lg navbar-light navbar-custum">
+                        <a class="navbar-brand logo" href="#">Meme</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                          <div class="navbar-nav">
+                            <a class="nav-item nav-link active" href="index.html">Gallery <span class="sr-only">(current)</span></a>
+                            <a class="nav-item nav-link" href="editor.html">Generate meme</a>
+                            <a class="nav-item nav-link" onclick="onAboutPress()">About us</a>
+                          </div>
+                        </div>
+                      </nav>
+
+        </div>
+        <div class="search-container flex space-between ">
+              <div class="flex"> search mims :<input type="text" class="searcher"name="search" placeholder="Search.." 
+                               onkeyup="onSearchImage(this.value)" ></div>
+               <div class="keyword-group flex" role="group">
+                    <button type="button" id="word-filter1"class="btn btn-light"
+                            onclick="onFilterWord(this)" data-name="funny">Funny</button>
+                    <button type="button" id="word-filter2"class="btn btn-light"
+                            onclick="onFilterWord(this)" data-name="angry">Angry</button>
+                    <button type="button" id="word-filter3"class="btn btn-light"
+                            onclick="onFilterWord(this)" data-name="happy">Happy</button>
+                    <button type="button" id="word-filter4"class="btn btn-light"
+                            onclick="onFilterWord(this)"data-name="cat">Cat</button>
+                    <button type="button" id="word-filter5"class="btn btn-light"
+                            onclick="onFilterWord(this)"data-name="baby">Baby</button>
+                  </div >
         </div>
         <div class="gallery-grid">
         </div>
     </div>
-    <script src="js/gallary-main.js"></script>
+    <div id ="the-team"class="team-members flex">
+            <section class="bg-light" id="me" style="padding: 0px;">
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <div class="team-member">
+                          <img class="mx-auto rounded-circle" src="img/team/2.jpg" alt="">
+                          <h4>Moshe Melamed</h4>
+                          <p class="text-muted">Lead Marketer</p>
+                          <ul class="list-inline social-buttons">
+                            <li class="list-inline-item">
+                              <a href="#">
+                                  <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                              <a href="#">
+                                  <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                              <a href="#">
+                                  <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-sm-8 flex-align-center">
+                          <p class="large text-muted  about-description">Moshe Melamed, 28 from Rishon lezion , specialize
+                            in javascript,css and html and also have knowladge at algorithems ,data structures , c++ and javascript
+                            this is my protfolio ,welcome to contact me about services i can provide to you
+                          </p>    
+                      </div>
+                    </div>
+                </section>
+                <section class="bg-light" id="me" style="padding: 0px;">
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <div class="team-member">
+                              <img class="mx-auto rounded-circle" src="img/team/3.jpg" alt="">
+                              <h4>Alexander yeruhin</h4>
+                              <p class="text-muted">Lead Marketer</p>
+                              <ul class="list-inline social-buttons">
+                                <li class="list-inline-item">
+                                  <a href="#">
+                                      <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                  <a href="#">
+                                      <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                  <a href="#">
+                                      <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-sm-8 flex-align-center">
+                              <p class="large text-muted  about-description">Moshe Melamed, 28 from Rishon lezion , specialize
+                                in javascript,css and html and also have knowladge at algorithems ,data structures , c++ and javascript
+                                this is my protfolio ,welcome to contact me about services i can provide to you
+                              </p>    
+                          </div>
+                        </div>
+                    </section>    
+
+        </div>
+    </div>
+   
+            <div class="inner-contact">
+
+              <h3>Contact!</h3>
+                    <!-- Form Area -->
+                    <div class="contact-form">
+                        <!-- Form -->
+                        <form id="contact-us" method="post" action="#">
+                            <!-- Left Inputs -->
+                            <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                                <!-- Name -->
+                                <input type="text" name="name" id="name" required="required" class="form" placeholder="Name" />
+                                <!-- Email -->
+                                <input type="email" name="mail" id="mail" required="required" class="form" placeholder="Email" />
+                                <!-- Subject -->
+                                <input type="text" name="subject" id="subject" required="required" class="form" placeholder="Subject" />
+                            </div><!-- End Left Inputs -->
+                            <!-- Right Inputs -->
+                            <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
+                                <!-- Message -->
+                                <textarea name="message" id="message" class="form textarea"  placeholder="Message"></textarea>
+                            </div><!-- End Right Inputs -->
+                            <!-- Bottom Submit -->
+                            <div class="relative fullwidth col-xs-12">
+                                <!-- Send Button -->
+                                <button type="submit" id="submit" name="submit" class="form-btn semibold">Send Message</button> 
+                            </div><!-- End Bottom Submit -->
+                            <!-- Clear -->
+                            <div class="clear"></div>
+                        </form>
+    
+                        <!-- Your Mail Message -->
+                        <div class="mail-message-area">
+                            <!-- Message -->
+                            <div class="alert gray-bg mail-message not-visible-message">
+                                <strong>Thank You !</strong> Your email has been delivered.
+                            </div>
+                        </div>
+    
+                    </div><!-- End Contact Form Area -->
+                </div><!-- End Inner -->
+    
+                <footer class="page-footer">
+
+                  <!-- Footer Elements -->
+                  <div class="container">
+              
+                    <!-- Grid row-->
+                    <div class="row">
+              
+                      <!-- Grid column -->
+                      <div class="col-md-12 py-5">
+                        <div class="mb-5 flex-center text-center">
+              
+                          <!-- Facebook -->
+                          <a class="fb-ic" href="http://facebook.com">
+                            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x" ></i>
+                          </a>
+                          <!-- Twitter -->
+                          <a class="tw-ic" href="http//twitter.com">
+                            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                          </a>
+                          <!-- Google +-->
+                          <a class="gplus-ic" href="http://google.com">
+                            <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                          </a>  
+                          <!--Linkedin -->
+                          <a class="li-ic" href="http://linkedin.com">
+                            <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                          </a>
+                          <!--Instagram-->
+                          <a class="ins-ic" href="http://instagram.com">
+                            <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                          </a>
+                          <!--Pinterest-->
+                          <a class="pin-ic" href="http//pinterest.com">
+                            <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+                          </a>
+                        </div>
+                      </div>
+                      <!-- Grid column -->
+              
+                    </div>
+                    <!-- Grid row-->
+              
+                  </div>
+                  <!-- Footer Elements -->
+              
+
+              
+                </footer>
+                <!-- Footer -->
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/bootstrap/bootstrap.js"></script>
     <script src="js/utils.js"></script>
+    <script src="js/gallary-main.js"></script>
 </body>
 
 </html>
