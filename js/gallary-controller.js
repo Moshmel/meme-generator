@@ -39,7 +39,7 @@ function convertImgToStr(picObj) {
 function onChooseImage(picDiv) { 
     var img = picDiv.innerHTML
     saveToStorage('Img', img.substr(img.indexOf('img/'), 11))
-    location.replace(window.location.href.replace('index.html', 'editor.html'))
+  window.location.href='editor.html';
 }
 
 function initWordFilters() {
@@ -51,9 +51,8 @@ function initWordFilters() {
 
 function onFilterWord(th) {
     var txt = th.dataset.name;
-    var img = picDiv.innerHTML
-    saveToStorage('Img', img.substr(img.indexOf('img/'), 11))
-    location.replace(window.location.href.replace('index.html', 'editor.html'))
+    onSearchImage(txt)
+   
 }
 
 function checkForKeyword(txt) {

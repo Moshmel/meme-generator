@@ -1,10 +1,8 @@
 'use strict';
 
-var isClicked = false
-var coords = {}
 var x = 0
 var y = 0
-var currImg
+var gCurrImg
 
 var gMeme = {
     selectedImgId: 5,
@@ -15,7 +13,6 @@ var gMeme = {
             size: 25,
             height: 400,
             width: 210,
-            align: 'center',
             color: 'white',
             x: 210,
             y: 50,
@@ -29,7 +26,6 @@ var gMeme = {
             size: 25,
             height: 400,
             width: 210,
-            align: 'center',
             color: 'white',
             x: 210,
             y: 400,
@@ -39,38 +35,17 @@ var gMeme = {
     ]
 }
 
-function saveImg(img) {
-    currImg = img
-}
-
-function getImg() {
-    return currImg
-}
-
-function printPics() {
-    var strHtml = ''
-    gImgs.forEach(function (el) {
-        strHtml += `<img src='${el.url}' width='200' height='200'>`;
-    });
-    $('.gellery-container').html(strHtml);
-
-}
-
+// Change the value of the font size for the wanted line obj
 function changeFont(id, value) {
     gMeme.txts[id].font = value;
 }
+
+// Change the value of the text color for the wanted line obj
 function changeColor(evt, id) {
     return gMeme.txts[id].color = evt.target.value;
 }
 
-function getNewID() {
-    var max = 0;
-    gImgs.forEach(function (img) {
-        if (img.id > max) max = img.id;
-    })
-    return max + 1;
-}
-
+// Add a new line obj
 function addTxt() {
     var txt = {
         content: '',
@@ -78,47 +53,50 @@ function addTxt() {
         size: 25,
         height: 400,
         width: 210,
-        align: 'center',
         color: 'white',
         x: 210,
         y: 400,
         isShadow: true,
         font: 'Impact',
     }
+
     gMeme.txts.push(txt);
-    console.log('gMeme.txts', gMeme.txts);
 }
 
+// Decrease the value of the font size for the wanted line obj
 function decreaseFont(id) {
     gMeme.txts[id].size -= 2;
     return gMeme.txts[id].size
 }
+
+// Increase the value of the font size for the wanted line obj
 function increaseFont(id) {
     gMeme.txts[id].size += 2;
     return gMeme.txts[id].size
 }
+
+// Send the line obj by his id
 function getTxt(id) {
     return gMeme.txts[id]
 }
+
+// Change the font family for the wanted line obj
 function changeFont(id, value) {
     gMeme.txts[id].font = value;
-    console.log(gMeme.txts[id].font)
 }
 
-function generate() {
+// Render the img with the lines on the canvas
+function drawMeme() {
     var elPhoto = document.querySelector('.main-img')
     canvas.width = elPhoto.clientWidth;
     canvas.height = elPhoto.clientHeight;
-    console.log(elPhoto.clientWidth)
-    console.log(elPhoto.clientHeight)
     elPhoto.crossOrigin = "anonymous"
     ctx.drawImage(elPhoto, 0, 0, elPhoto.clientWidth, elPhoto.clientHeight);
 
-
-    gMeme.txts.forEach(function (el) {
-        console.log(el.line)
+    gMeme.txts.forEach((el) => {
         ctx = canvas.getContext("2d");
         ctx.font = `${el.size}px ${el.font}`;
+
         if (el.isShadow) {
             ctx.shadowColor = "black";
             ctx.shadowBlur = 7
@@ -129,12 +107,10 @@ function generate() {
         ctx.fillStyle = el.color;
 
         ctx.fillText(el.line, el.x, el.y);
-
     });
-
 }
 
-
+// Set the correct coords of the line on the img in relate to the img
 function getTransInputCoords() {
     gMeme.txts.forEach((txt, inx) => {
         let line = document.querySelector(`#line${inx + 1}`)
@@ -147,6 +123,7 @@ function getTransInputCoords() {
     })
 }
 
+// Toggle text shadow
 function textShadowToggle(id) {
     return gMeme.txts[id].isShadow = !gMeme.txts[id].isShadow
 }
