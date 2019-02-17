@@ -49,53 +49,53 @@ var gImgs = [{
 {
     id: 10,
     url: 'img/010.jpg',
-    keywords: ['wtf', 'stupid', ' angry']
+    keywords: ['exlain', 'stupid', ' angry']
 },
 {
     id: 11,
     url: 'img/011.jpg',
-    keywords: ['wtf', 'stupid', ' angry']
+    keywords: ['sure', 'lie', ' bad']
 },
 {
     id: 12,
     url: 'img/012.jpg',
-    keywords: ['wtf', 'stupid', ' angry']
+    keywords: ['dance', 'black', ' happy']
 },
 {
     id: 13,
     url: 'img/013.jpg',
-    keywords: ['wtf', 'stupid', ' angry']
+    keywords: ['suprise','exited', ' thrill']
 },
 {
     id: 14,
     url: 'img/014.jpg',
-    keywords: ['wtf', 'stupid', ' angry']
+    keywords: ['sur', 'kidding', ' barur']
 },
 {
     id: 15,
     url: 'img/015.jpg',
-    keywords: ['wtf', 'stupid', ' angry']
+    keywords: ['happy', 'gay', ' to friendly']
 },
 {
     id: 16,
     url: 'img/016.jpg',
-    keywords: ['wtf', 'stupid', ' angry']
+    keywords: ['cheers', 'see', ' glass']
 }, {
     id: 17,
     url: 'img/017.jpg',
-    keywords: ['wtf', 'stupid', ' angry']
+    keywords: ['matrix', 'serius', ' the man']
 }, {
     id: 18,
     url: 'img/018.jpg',
-    keywords: ['wtf', 'stupid', ' angry']
+    keywords: ['what if i tell you', 'smart', ' happy']
 }, {
     id: 19,
     url: 'img/019.jpg',
-    keywords: ['wtf', 'stupid', ' angry']
+    keywords: ['haleluya', 'opra', ' shorty']
 }, {
     id: 20,
     url: 'img/020.jpg',
-    keywords: ['wtf', 'stupid', ' angry']
+    keywords: ['kidding', 'happy', ' angry']
 }
 ]
 
