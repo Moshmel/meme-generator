@@ -185,7 +185,6 @@ function getRandomInt(min, max) {
 
 function onAboutPress()
 {
-
     $([document.documentElement, document.body]).animate({
         scrollTop: $("#the-team").offset().top
     }, 1000);

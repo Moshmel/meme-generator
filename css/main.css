@@ -4,6 +4,16 @@
   font-weight: normal;
   font-style: normal; 
 }
+@font-face {
+  font-family: 'laila-bold';
+  src: url("../fonts/Laila-Bold.ttf ");
+
+}
+@font-face {
+  font-family: 'laila-semi';
+  src: url("../fonts/Laila-SemiBold.ttf ");
+
+}
   
 * {
   margin: 0;
@@ -174,6 +184,7 @@ footer{
   outline: none;
   color: white;
 }
+
 .download:hover{
   text-decoration: none;
 }
@@ -181,15 +192,40 @@ footer{
 .buttons{
   display: flex;
 }
+
 .buttons>*{
   margin: 0 5px;
 }
+
 .btn-block + .btn-block{
   margin: 0;
 }
 
+select{
+  color: black;
+}
+
 .navbar-custum{
   background-color: lightgreen !important;
+  -webkit-box-shadow: 3px 18px 19px -2px rgba(188,247,204,0.88);
+  -moz-box-shadow: 3px 18px 19px -2px rgba(188,247,204,0.88);
+  box-shadow: 3px 18px 19px -2px rgba(188,247,204,0.88);
+  margin-bottom:20px;
+}
+
+.navbar a{
+  font-family: 'laila-bold';
+  font-size: 25px;
+ 
+}
+
+.navbar a:hover{
+  cursor: pointer;
+}
+
+.navbar-nav a{
+  font-family: 'laila-semi';  
+  font-size:1.3rem;
 }
 
 .text-shadow{
@@ -205,20 +241,29 @@ footer{
              1.5px -1.5px 0 #000;
   
 }
+
 .btn-outline-success {
   color: #8cef8c;
   border-color: #8cef8c;
 }
+
 .btn-outline-success:hover {
   color: #fff;
   background-color: #a8f6a8;
   border-color: #8cef8c;
 }
+
 .btn-group{
   margin-bottom: 8px;
 }
+
 .mb-5 {
   margin: 0 !important;
+}
+
+.slide-in-bck-center {
+	-webkit-animation: slide-in-bck-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-bck-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 @media (min-width:800px){
@@ -240,9 +285,34 @@ footer{
     padding: 10px;
   }
 }
-
 @media (max-width:380px){
   .btn{
     padding: 10px 0;
+  }
+}
+
+
+@-webkit-keyframes slide-in-bck-center {
+  0% {
+    -webkit-transform: translateZ(600px);
+            transform: translateZ(600px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-bck-center {
+  0% {
+    -webkit-transform: translateZ(600px);
+            transform: translateZ(600px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    opacity: 1;
   }
 }

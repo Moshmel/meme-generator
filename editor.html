@@ -11,7 +11,7 @@
     <title>Document</title>
 </head>
 
-<body onload="init()">
+<body onload="init()" class="slide-in-bck-center">
 
     <div class="main-page">
         <!-- Editor Page -->
@@ -48,7 +48,7 @@
                         <!-- ToolBar -->
                         <div class="btn-group btn-block" role="group" aria-label="Button group with nested dropdown">
                             <button type="button" class="btn btn-secondary">
-                                <input title="Change color" type="color" onchange="onChangeColor(event)" class=" opt-button">
+                                <input title="Change color" type="color" onchange="onChangeColor(event)" value="#ffffff" class="opt-button">
                             </button>
                             <button type="button" class="btn btn-secondary " onclick="onIncreaseFont()">
                                 A+
@@ -60,7 +60,7 @@
                                 <select onchange="onChangeFont(this.value)" name="choose-font">
                                     <option value="impact">Impact</option>
                                     <option value="other-text">other-text</option>
-                                    <option value="other-text2">other-text2</option>
+                                    <option value="laila-semi">laila-semi</option>
                                 </select>
                             </button>
                             <button type="button" class="btn btn-secondary" onclick="onTextShadowToggle()">
