@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.css">
+    <title>Document</title>
+</head>
+
+<body onload="init()">
+    <div class="main-page">
+
+        <header class="header">Header</header>
+
+        <main class="main-container">
+
+            <div class='block-container flex'>
+                <div class="img-container"><img class="main-img" id="main-img" src=""></div>
+                <canvas id='canvas' hidden></canvas>
+            </div>
+
+            <div>
+                <div class="flex column tools-container">
+                    <section>
+                        <!-- <button class="menu" type="button" onclick="modalOpen()">☰</button> -->
+                        <!-- Bootstramp -->
+                        <div class="btn-group btn-block" role="group" aria-label="Button group with nested dropdown">
+                            <button type="button" class="btn btn-secondary">
+                                <input title="Change color" type="color" onchange="onChangeColor(event)" class=" opt-button">
+                            </button>
+                            <button type="button" class="btn btn-secondary " onclick="onIncreaseFont()">
+                                A+
+                            </button>
+                            <button type="button" class="btn btn-secondary " onclick="onDecreaseFont()">
+                                A-
+                            </button>
+                            <button type="button" class="btn btn-secondary">
+                                <select onchange="onChangeFont(this.value)" name="choose-font">
+                                    <option value="impact">Impact</option>
+                                    <option value="other-text">other-text</option>
+                                    <option value="other-text2">other-text2</option>
+                                </select>
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="onTextShadowToggle()">
+                                ❏
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="onAddLine()">
+                                    ＋
+                            </button>
+                        </div>
+                        <!-- End of Bootstramp -->
+                    </section>
+                    <section>
+
+                        <button type="button" class="btn btn-outline-success btn-lg btn-block relative">
+                            <a download="myImage.jpg" class="opacity" href="" onclick="onGenerate(this)"></a>
+                            Download
+                        </button>
+                        <button type="button" class="btn btn-outline-success btn-lg btn-block relative">
+                                <input id="upload" class="opacity" type="file" name="image" accept='image/*' onchange="uploadImg(event)"/>  
+                                Upload File  
+                        </button>
+
+
+                        <!-- <a type="button" download="myImage.jpg" href="" onclick="onGenerate(this)"><button>Download</button></a> -->
+                        
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer>Footer</footer>
+    </div>
+
+    <script src="lib/bootstrap/bootstrap.js"></script>
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="js/meme-controller.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/utils.js"></script>
+
+</body>
+
+</html>
